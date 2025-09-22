@@ -8,13 +8,17 @@ pygame.init()
 screen = pygame.display.set_mode((500, 720))
 clock = pygame.time.Clock()
 running = True
+game_over = False
+dt = 0
+
+
+#player meta
 player_pos = pygame.Vector2(
     #posicionado no centro do eixox
     screen.get_width()/2, 
     #posicionado um pouco acima do fim da tela (10% da tela)                        
     screen.get_height() -screen.get_height() / 10 
     )
-
 player_radius = 20
 
 # Configurações dos asteroids
@@ -24,9 +28,6 @@ asteroid_spawn_interval = 2.0  # segundos entre cada spawn
 asteroid_speed = 100  # pixels por segundo
 max_asteroids = 10    # número máximo de asteroids na tela
 
-# Game loop
-game_over = False
-dt = 0
 
 # Função para criar um novo asteroid
 def create_asteroid():
@@ -82,6 +83,7 @@ while running:
 
 
     # Atualiza o timer de spawn
+    #func asteroid spawn
     asteroid_spawn_timer += dt
     if asteroid_spawn_timer >= asteroid_spawn_interval and len(asteroids) < max_asteroids:
         asteroids.append(create_asteroid())
@@ -93,17 +95,19 @@ while running:
     # RENDER YOUR GAME HERE
 
     # Movimento lateral do jogador
-
+    # func player movement
     keys = pygame.key.get_pressed()
     if keys[pygame.K_a]:
         player_pos.x -= 300 * dt
     if keys[pygame.K_d]:
         player_pos.x += 300 * dt
+    player_pos.x = max(player_radius, min(screen.get_width() - player_radius, player_pos.x))
 
     # Atualiza os asteroids
     update_asteroids(dt)
     # Mantém o jogador dentro da tela
-    player_pos.x = max(player_radius, min(screen.get_width() - player_radius, player_pos.x))
+
+    
 
     # Desenha os asteroids (esferas laranja)
     for asteroid in asteroids:
