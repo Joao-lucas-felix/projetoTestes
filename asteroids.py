@@ -5,7 +5,7 @@ import math
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((500, 720))
+screen = pygame.display.set_mode((500, 600))
 clock = pygame.time.Clock()
 running = True
 game_over = False
@@ -39,10 +39,10 @@ def create_asteroid():
         y = -30  # pouco acima da tela
     elif side == 'left':
         x = -30  # pouco à esquerda da tela
-        y = random.randint(0, screen.get_height()/2)
+        y = random.randint(0, screen.get_height()//2)
     else:  # right
         x = screen.get_width() + 30  # pouco à direita da tela
-        y = random.randint(0, screen.get_height()/2)
+        y = random.randint(0, screen.get_height()//2)
     
     # Tamanho aleatório entre 15 e 35 pixels
     size = random.randint(15, 35)
