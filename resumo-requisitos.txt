@@ -1,0 +1,79 @@
+Resumo de Requisitos
+
+Requisitos Funcionais
+1. Controle do Jogador
+Movimento lateral: O jogador pode mover-se para esquerda (tecla A) e direita (tecla D)
+
+Limites de movimento: O jogador não pode sair dos limites laterais da tela
+
+Posicionamento inicial: Jogador posicionado no centro horizontal e 10% acima da base da tela
+
+2. Sistema de Disparos
+Ativação de disparo: Barra de espaço cria novos projéteis
+
+Trajetória dos projéteis: Movimento vertical para cima em velocidade constante
+
+Gerenciamento de projéteis: Remoção automática quando saem da tela
+
+Colisão projétil-asteroide: Detecção e remoção de ambos os elementos na colisão
+
+3. Sistema de Asteroides
+Geração procedural: Spawn automático em intervalos regulares (0.5 segundos)
+
+Origens variadas: Aparecem acima, à esquerda ou à direita da tela
+
+Comportamento inteligente: Movem-se em direção ao jogador
+
+Características variadas: Tamanhos aleatórios (15-35 pixels) com velocidade inversamente proporcional ao tamanho
+
+Limite máximo: Máximo de 10 asteroides simultâneos na tela
+
+
+4. Sistema de Colisões
+Detecção jogador-asteroide: Colisão circular usando pygame.Rect -> da biblioteca. 
+
+Game Over: Colisão termina o jogo imediatamente.
+
+Detecção projétil-asteroide: Colisão precisa usando retângulos delimitadores
+
+5. Gerenciamento do Jogo
+Loop principal: Controle de FPS (60 frames por segundo)
+
+Delta time: Física independente da taxa de quadros
+
+Encerramento: Saída limpa ao fechar a janela ou game over
+
+Requisitos Não Funcionais
+1. Desempenho
+Taxa de quadros: Estável a 60 FPS
+
+Otimização de memória: Remoção eficiente de objetos fora da tela
+
+Gerenciamento de entidades: Limite máximo de asteroides para evitar sobrecarga
+
+2. Usabilidade
+Controles intuitivos: Teclas A/D para movimento, Espaço para disparar
+
+Feedback visual: Cores distintas para jogador (vermelho), asteroides (laranja) e projéteis (branco)
+
+
+3. Confiabilidade
+Prevenção de erros: Verificação de limites para evitar índices inválidos
+
+Tratamento de colisões: Detecção robusta usando métodos nativos do pygame
+
+Gerenciamento de estado: Controle preciso do estado do jogo (running/game over)
+
+4. Manutenibilidade
+Código modular: Funções especializadas para cada sistema (asteroides, projéteis, colisões)
+
+Documentação interna: Comentários explicativos no código
+
+Estrutura clara: Separação lógica entre inicialização, loop principal e funções auxiliares
+
+5. Requisitos Técnicos
+Plataforma: Compatível com pygame
+
+Resolução: Tela fixa de 500x600 pixels
+
+Dependências: Pygame como única dependência externa
